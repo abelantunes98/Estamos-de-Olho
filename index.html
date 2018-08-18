@@ -177,7 +177,48 @@
     </section>
 
     <div id="map"></div>
+	<script>
+      // This example displays a marker at the center of Hackfest.
+		// When the user clicks the marker, an info window opens.
 
+		function initMap() {
+			function getRandomFloat(min, max) {
+			  return Math.random() * (max - min) + min;
+			}
+			<!-- let Parse = require('parse'); -->
+			<!-- Parse.initialize("app_id", "YOUR_JAVASCRIPT_KEY"); -->
+
+			<!-- Parse.serverURL = 'http://YOUR_PARSE_SERVER:1337/parse' -->
+		  let uluru = {lat: -7.151350,  lng: -34.797886};
+		  let map = new google.maps.Map(document.getElementById('map'), {
+			zoom: 16,
+			center: uluru
+		  });
+
+		  let contentString = '<div id="content">'+
+			  '<div id="siteNotice">'+
+			  '</div>'+
+			  '<h5 id="firstHeading" class="firstHeading">Camera</h5>'+
+			  '</div>';
+
+		  let infowindow = new google.maps.InfoWindow({
+			content: contentString
+		  });
+			for(let i = 0;i < 50;i++){
+				
+			  let marker = new google.maps.Marker({
+				position: {lat: getRandomFloat(-7.151350,-7.162450),  lng: getRandomFloat(-34.797886,-34.809086)},
+				map: map,
+				title: 'Camera: (lat: -7.151350,  lng: -34.797886)'
+			  });
+			  marker.addListener('click', function() {
+				infowindow.open(map, marker);
+			  });
+		  }
+		}
+    </script>
+	<script async defer src="https://maps.googleapis.com/maps/api/js?sensor=false&callback=initMap"></script>
+    <!-- <script src="js/google-map.js"></script>    -->
     <footer class="site-footer">
       <div class="container">
         <div class="row mb-5">
