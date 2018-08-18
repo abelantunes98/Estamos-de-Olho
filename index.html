@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <title>Estamos de Olho</title>
@@ -173,40 +173,38 @@
 		// When the user clicks the marker, an info window opens.
 
 		function initMap() {
-			function getRandomFloat(min, max) {
-			  return Math.random() * (max - min) + min;
-			}
-			<!-- let Parse = require('parse'); -->
-			<!-- Parse.initialize("app_id", "YOUR_JAVASCRIPT_KEY"); -->
-
-			<!-- Parse.serverURL = 'http://YOUR_PARSE_SERVER:1337/parse' -->
-		  let uluru = {lat: -7.151350,  lng: -34.797886};
+		  let nave = {lat: -7.151350,  lng: -34.797886};
 		  let map = new google.maps.Map(document.getElementById('map'), {
-			zoom: 16,
-			center: uluru
+			zoom: 14,
+			center: nave
 		  });
-
-		  let contentString = '<div id="content">'+
+			var equipamentos = getMarker().then(response => {
+			for(let i = 0;i < response.length;i++){
+				var tipo = response[i].get("tipo");
+				var latitude = response[i].get("localizacao").latitude;
+				var longitude = response[i].get("localizacao").longitude;
+				let contentString = '<div id="content">'+
 			  '<div id="siteNotice">'+
 			  '</div>'+
-			  '<h5 id="firstHeading" class="firstHeading">Camera</h5>'+
+			  `<h5 id="firstHeading" class="firstHeading">${tipo}</h5>`+
 			  '</div>';
 
-		  let infowindow = new google.maps.InfoWindow({
-			content: contentString
-		  });
-			for(let i = 0;i < 50;i++){
-				
+			  let infowindow = new google.maps.InfoWindow({
+				content: contentString
+			  });
 			  let marker = new google.maps.Marker({
-				position: {lat: getRandomFloat(-7.151350,-7.162450),  lng: getRandomFloat(-34.797886,-34.809086)},
+				position: {lat: latitude,  lng: longitude},
 				map: map,
-				title: 'Camera: (lat: -7.151350,  lng: -34.797886)'
+				title: `${tipo}: (lat: ${latitude},  lng: ${longitude})`
 			  });
 			  marker.addListener('click', function() {
 				infowindow.open(map, marker);
 			  });
 		  }
-		}
+			}).catch(error => alert("Houve um Erro"));
+			<!-- console.log(equipamentos[0].get("tipo")); -->
+			
+		};
     </script>
 	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWbTzd3WjQKt7z4pidZS-7VMs9TQ8lxz0&callback=initMap"></script>
     <!-- <script src="js/google-map.js"></script>    -->	
@@ -307,44 +305,21 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/parse/2.0.1/parse.min.js"></script>
 
     <script src="js/main.js"></script>
-	<!-- Parse TO DO -->
 	<script>
-		<!-- Parse.initialize("app_id", "javascript_key"); -->
+		Parse.initialize("app_id", "javascript_key");
 
-		<!-- Parse.serverURL = 'https://08d144b7.ngrok.io/parse'; -->
+		Parse.serverURL = 'https://08d144b7.ngrok.io/parse';
+		function getMarker(){
+			return new Promise(function(resolve,reject){
+				var query = new Parse.Query(Parse.Object.extend("Equipamento"));
+				query.find().then(function(equipamentos){
+					resolve(equipamentos);
+				});
+			});
+			
+			
+		}
 		
-		<!-- var GameScore = Parse.Object.extend("GameScore"); -->
-		<!-- var query = new Parse.Query(GameScore); -->
-		<!-- query.find().then((gameScore) => { -->
-			<!-- for(var i = 0;i < gameScore.length;i++){ -->
-				<!-- console.log(gameScore[i].get("score") + " " + gameScore[i].get("playerName") + " " + gameScore[i].get("cheatMode")); -->
-			<!-- } -->
-			<!-- //for(var i = 0;i < score.length;i++ ){ -->
-			<!-- //	console.log(score[i]); -->
-			<!-- //} -->
-		<!-- }, (error) => { -->
-		  <!-- // The object was not retrieved successfully. -->
-		  <!-- // error is a Parse.Error with an error code and message. -->
-		<!-- }); -->
-		
-		
-		
-		<!-- var GameScore = Parse.Object.extend("GameScore"); -->
-		<!-- var gameScore = new GameScore(); -->
-		<!-- for(var i = 0;i < 5;i++){ -->
-			<!-- gameScore.save({ -->
-			  <!-- score: (1337 + i + i * 2), -->
-			  <!-- playerName: "Sean Plott", -->
-			  <!-- cheatMode: false -->
-			<!-- }) -->
-			<!-- .then((gameScore) => { -->
-			  <!-- // The object was saved successfully. -->
-			  <!-- console.log(gameScore); -->
-			<!-- }, (error) => { -->
-			  <!-- // The save failed. -->
-			  <!-- // error is a Parse.Error with an error code and message. -->
-			<!-- }); -->
-		<!-- } -->
 	</script>
   </body>
 </html>
