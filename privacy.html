@@ -1,7 +1,7 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
-    <title>Estamos de Olho</title>
+    <title>Politica de Privacidade</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -48,7 +48,6 @@
         </div>
       </nav>
     </header>
-    <!-- END header -->
 
     <section class="site-hero overlay" data-stellar-background-ratio="0.5" style="background-image: url(images/big_image_2.jpg);">
       <div class="container">
@@ -57,8 +56,8 @@
   
             <div class="mb-5 element-animate">
               <div class="block-17">
-                <h1 class="heading mb-4">Proteja-se e proteja.</h1>
-                <p><a href="#map" class="btn btn-primary-white py-3 px-5">Localizações no mapa</a> <a href="#" class="text-white ml-4"> </a></p>
+                <h1 class="heading mb-4">Privacidade</h1>
+                <div class="lead">Veja aqui a minuta da lei e o que ela certifica.</div>
               </div>
             </div>
             
@@ -68,149 +67,22 @@
     </section>
     <!-- END section -->
 
-    <section class="block-42 overlap">
-
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12 d-lg-flex">
-              
-              <div class="block-42-text">
-                <div class="block-42-label">Uma iniciativa do HackFest,</div>
-                <div class="block-42-meta"><a href="#"><strong>+ Virada Legislativa</strong></a></div>
-                <div class="block-42-title mx-2">Mudamos+</div>
-              </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    
 
     <section class="site-section">
       <div class="container">
         <div class="row align-items-center">
-          <div class="col-md-6 order-md-2">
-            <div class="block-16">
-              <figure>
-                <img src="images/cam.png" alt="Cam Image" class="img-fluid img-shadow">
-              </figure>
+			<div class="text">
+              <h5 class="heading">Acesse o link para uma leitura completa da politica:</h5>
+			  <a class="nav-link" href="https://drive.google.com/open?id=1J3_XwdJVpkAV6UlOQ6lolVBpCOLtPztzJZPfx0m8hhY">Lei</a>
             </div>
-          </div>
-          <div class="col-md-6 order-md-1">
-
-            <div class="block-15">
-              <div class="heading">
-                <h2>Cuide do seu bairro tanto como de você</h2>
-              </div>
-              <div class="text mb-5">
-              <p class="mb-4">Seja bem vindo ao sistema que não só te ajuda a se proteger, como também gerenciar a segurança da sua região. Contando com seu auxilio, podemos ir mais longe.</p>
-              <p class="text-black">Sistema: <strong>Estamos de Olho</strong></p>
-              </div> 
-            </div>
-          </div>    
         </div>
 
       </div>
     </section>
     <!-- END section -->
 
-    <section class="site-section pt-0">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6 col-lg-4 mb-5">
-            <div class="block-43">
-              <div class="block-43-icon">
-                <span class="icon-wrapper">
-                  <span class="icon fa fa-question text-primary"></span>  
-                </span>
-                
-              </div>
-              <div class="block-43-text">
-                <h3 class="block-43-heading">Como funciona?</h3>
-                <p>É bem simples, apenas é preciso fornecer as informações sobre seus aparelhos de segurança, assim poderemos ter o controle de quantos e quais aparelhos estão em determinada região.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4 mb-5">
-            <div class="block-43">
-              <div class="block-43-icon">
-                <span class="icon-wrapper">
-                  <span class="icon fa fa-puzzle-piece text-primary"></span>  
-                </span>
-                
-              </div>
-              <div class="block-43-text">
-                <h3 class="block-43-heading">O que é necessário?</h3>
-                <p>Um kit básico de aparelhos de segurança voltados pra rua serão de grande utilidade, a exemplo de aparelhos temos cameras, microfones, sensores, alarmes e etc.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4 mb-5">
-            <div class="block-43">
-              <div class="block-43-icon">
-                <span class="icon-wrapper">
-                  <span class="icon fa fa-exclamation text-primary"></span>  
-                </span>
-                
-              </div>
-              <div class="block-43-text">
-                <h3 class="block-43-heading">Recompensa</h3>
-                <p>Além de segurança para sua localidade, seu comércio e você, também há uma redução no IPTU pago.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-	
-	<div class="site-section bg-light">
-			  <div class="col-md-12">
-				<div class="section-heading mb-5">
-				  <h2 class="heading">Mapa de localidades</h2>
-				</div>
-			  </div>
-			  <div id="map"></div>
-	<script>
-      // This example displays a marker at the center of Hackfest.
-		// When the user clicks the marker, an info window opens.
-
-		function initMap() {
-		  let nave = {lat: -7.151350,  lng: -34.797886};
-		  let map = new google.maps.Map(document.getElementById('map'), {
-			zoom: 14,
-			center: nave
-		  });
-			var equipamentos = getMarker().then(response => {
-			for(let i = 0;i < response.length;i++){
-				var tipo = response[i].get("tipo");
-				var latitude = response[i].get("localizacao").latitude;
-				var longitude = response[i].get("localizacao").longitude;
-				let contentString = '<div id="content">'+
-			  '<div id="siteNotice">'+
-			  '</div>'+
-			  `<h5 id="firstHeading" class="firstHeading">${tipo}</h5>`+
-			  '</div>';
-
-			  let infowindow = new google.maps.InfoWindow({
-				content: contentString
-			  });
-			  let marker = new google.maps.Marker({
-				position: {lat: latitude,  lng: longitude},
-				map: map,
-				title: `${tipo}: (lat: ${latitude},  lng: ${longitude})`
-			  });
-			  marker.addListener('click', function() {
-				infowindow.open(map, marker);
-			  });
-		  }
-			}).catch(error => alert("Houve um Erro"));
-			<!-- console.log(equipamentos[0].get("tipo")); -->
-			
-		};
-    </script>
-	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWbTzd3WjQKt7z4pidZS-7VMs9TQ8lxz0&callback=initMap"></script>
-    <!-- <script src="js/google-map.js"></script>    -->	
-	</div>
-
-    <footer class="site-footer">
+     <footer class="site-footer">
       <div class="container">
         <div class="row mb-5">
         <!--   <div class="col-md-6 col-lg-3 mb-5 mb-lg-0">
@@ -296,25 +168,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="js/jquery.animateNumber.min.js"></script>
     
     <script src="js/jquery.magnific-popup.min.js"></script>
-	
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/parse/2.0.1/parse.min.js"></script>
 
     <script src="js/main.js"></script>
-	<script>
-		Parse.initialize("app_id", "javascript_key");
-
-		Parse.serverURL = 'https://08d144b7.ngrok.io/parse';
-		function getMarker(){
-			return new Promise(function(resolve,reject){
-				var query = new Parse.Query(Parse.Object.extend("Equipamento"));
-				query.find().then(function(equipamentos){
-					resolve(equipamentos);
-				});
-			});
-			
-			
-		}
-		
-	</script>
   </body>
 </html>
