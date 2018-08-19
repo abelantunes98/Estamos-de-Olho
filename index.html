@@ -58,7 +58,9 @@
             <div class="mb-5 element-animate">
               <div class="block-17">
                 <h1 class="heading mb-4">Proteja-se e proteja.</h1>
-                <p><a href="#map" class="btn btn-primary-white py-3 px-5">Localizações no mapa</a> <a href="#" class="text-white ml-4"> </a></p>
+                <p><a href="#map" class="btn btn-primary-white py-3 px-5">Localizações no mapa </a> <a href="#" class="text-white ml-4"> </a></p>
+				<h3 class="heading mb-4">Já somos <a id="qtd"></a>, faça parte você também!</h3>
+				
               </div>
             </div>
             
@@ -179,6 +181,7 @@
 			center: nave
 		  });
 			var equipamentos = getMarker().then(response => {
+			
 			for(let i = 0;i < response.length;i++){
 				var tipo = response[i].get("tipo");
 				var latitude = response[i].get("localizacao").latitude;
@@ -201,6 +204,7 @@
 				infowindow.open(map, marker);
 			  });
 		  }
+			document.getElementById("qtd").innerHTML = response.length;
 			}).catch(error => alert("Houve um Erro"));
 			<!-- console.log(equipamentos[0].get("tipo")); -->
 			
@@ -303,7 +307,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<script>
 		Parse.initialize("app_id", "javascript_key");
 
-		Parse.serverURL = 'https://08d144b7.ngrok.io/parse';
+		Parse.serverURL = 'https://1f3aad89.ngrok.io/parse';
 		function getMarker(){
 			return new Promise(function(resolve,reject){
 				var query = new Parse.Query(Parse.Object.extend("Equipamento"));
